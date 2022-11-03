@@ -23,12 +23,16 @@ export const RotateRight = ({
 }: RotateRightProps) => {
   const animatedValue = useSharedValue(0);
 
+  const animate = () => {
+    animatedValue.value = withTiming(1, {duration: 300}, () => {
+      animatedValue.value = 0;
+      onAnimationEnd && runOnJS(onAnimationEnd)();
+    });
+  };
+
   useEffect(() => {
     if (triggerAnimation) {
-      animatedValue.value = withTiming(1, {duration: 300}, () => {
-        animatedValue.value = 0;
-        onAnimationEnd && runOnJS(onAnimationEnd)();
-      });
+      animate();
     }
   }, [triggerAnimation]);
 

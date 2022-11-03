@@ -1,6 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useState} from 'react';
 import {RotateRight} from '../common/animations';
+import SimpleAnimation from '../common/animations/SimpleAnimation';
 
 import {HomeIcon, SettingsIcon} from '../common/svgs';
 import HomeScreen from '../features/home/screens/HomeScreen';
@@ -24,14 +25,22 @@ const BottomBar = () => {
             setAnimateSettings(false);
             setAnimateHome(true);
           },
+          blur: e => {
+            setAnimateHome(false);
+          },
         }}
         options={{
           tabBarIcon: ({focused}) => (
-            <RotateRight
+            <SimpleAnimation
+              triggerAnimation={animateHome}
+              size={24}
               onAnimationEnd={() => setAnimateHome(false)}
-              triggerAnimation={focused && animateHome}>
-              <HomeIcon color={getIconColorByStatus(focused)} />
-            </RotateRight>
+            />
+            // <RotateRight
+            //   onAnimationEnd={() => setAnimateHome(false)}
+            //   triggerAnimation={focused && animateHome}>
+            //   <HomeIcon color={getIconColorByStatus(focused)} />
+            // </RotateRight>
           ),
         }}
         name="Home"

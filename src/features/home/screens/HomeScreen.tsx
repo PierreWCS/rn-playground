@@ -15,24 +15,23 @@ const HomeScreen = ({navigation}: Props) => {
   return (
     <ScreenWrapper>
       <Text>Home screen</Text>
-      <Button
-        action={() => navigation.navigate('Settings')}
-        text="Go to settings"
-      />
-      <View
-        style={{
-          backgroundColor: 'orange',
-          height: 200,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+
+      <View style={{alignItems: 'center'}}>
         <RotateRight
           onAnimationEnd={() => setShouldAnimate(false)}
           triggerAnimation={shouldAnimate}>
-          <View style={{backgroundColor: 'pink', height: 50, width: 50}} />
+          <View
+            style={{
+              backgroundColor: 'pink',
+              height: 50,
+              width: 50,
+              borderRadius: 10,
+            }}
+          />
         </RotateRight>
       </View>
 
+      <View style={{height: 20}} />
       <Button
         action={() => {
           setShouldAnimate(true);
@@ -41,8 +40,20 @@ const HomeScreen = ({navigation}: Props) => {
       />
 
       <View style={{height: 50}} />
-      <View style={{width: 200, height: 200, alignSelf: 'center'}}>
-        <SimpleAnimation />
+      <View
+        style={{
+          width: 200,
+          height: 200,
+          alignSelf: 'center',
+          alignItems: 'center',
+        }}>
+        <SimpleAnimation
+          size={24}
+          triggerAnimation={stroke}
+          onAnimationEnd={() => setStroke(false)}
+        />
+        <View style={{height: 20}} />
+        <Button action={() => setStroke(true)} text="Fill this" />
       </View>
     </ScreenWrapper>
   );
