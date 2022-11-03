@@ -3,7 +3,7 @@ import {SafeAreaView, View} from 'react-native';
 import styled from 'styled-components';
 
 type Props = {
-  children: JSX.Element[];
+  children: JSX.Element | JSX.Element[];
 };
 const ScreenWrapper = ({children}: Props) => (
   <StyledSafeArea>

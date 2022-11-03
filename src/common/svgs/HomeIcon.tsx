@@ -1,11 +1,21 @@
 import * as React from 'react';
-import Svg, {Path, SvgProps} from 'react-native-svg';
+import Svg, {SvgProps, Path, Circle} from 'react-native-svg';
 
 const HomeIcon = (props: SvgProps) => (
-  <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Circle
+      cx={11}
+      cy={11}
+      r={10.5}
+      transform="rotate(-180 11 11)"
+      // fill="#1E2F47"
+      stroke="#5CA5FF"
+    />
     <Path
-      d="M2 2.91A.91.91 0 012.91 2h5.454a.91.91 0 01.909.91v5.454a.91.91 0 01-.91.909H2.91A.91.91 0 012 8.363V2.91zM14.727 2.91a.91.91 0 01.91-.91h5.454a.91.91 0 01.909.91v5.454a.91.91 0 01-.91.909h-5.454a.91.91 0 01-.909-.91V2.91zM2 15.636a.91.91 0 01.91-.909h5.454a.91.91 0 01.909.91v5.454a.91.91 0 01-.91.909H2.91A.91.91 0 012 21.09v-5.454zM14.727 15.636a.91.91 0 01.91-.909h5.454a.91.91 0 01.909.91v5.454a.91.91 0 01-.91.909h-5.454a.91.91 0 01-.909-.91v-5.454z"
-      stroke={props.color || '#000'}
+      d="M6.501 4.655A1.5 1.5 0 018.775 3.37l10.528 6.345a1.5 1.5 0 010 2.57L8.775 18.628a1.5 1.5 0 01-2.274-1.285V4.655z"
+      stroke="#5CA5FF"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </Svg>
 );

@@ -14,7 +14,8 @@ const HomeScreen = ({navigation}: Props) => {
 
   return (
     <ScreenWrapper>
-      <Text>Home screen</Text>
+      <Text style={{fontSize: 24, textAlign: 'center'}}>Home screen</Text>
+      <View style={{height: 20}} />
 
       <View style={{alignItems: 'center'}}>
         <RotateRight
@@ -38,23 +39,6 @@ const HomeScreen = ({navigation}: Props) => {
         }}
         text="flip this"
       />
-
-      <View style={{height: 50}} />
-      <View
-        style={{
-          width: 200,
-          height: 200,
-          alignSelf: 'center',
-          alignItems: 'center',
-        }}>
-        <SimpleAnimation
-          size={24}
-          triggerAnimation={stroke}
-          onAnimationEnd={() => setStroke(false)}
-        />
-        <View style={{height: 20}} />
-        <Button action={() => setStroke(true)} text="Fill this" />
-      </View>
     </ScreenWrapper>
   );
 };
