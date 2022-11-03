@@ -60,7 +60,7 @@ const SimpleAnimation = ({triggerAnimation, size = 24}: Props) => {
   };
 
   const RATIO = size / 120;
-  const tilesBorderRadius = 3 * RATIO;
+  const tilesBorderRadius = 10 * RATIO;
   const tileSize = 50 * RATIO;
 
   const circleAnimatedProps1 = useAnimatedStyle(() => ({

@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useState} from 'react';
-import {RotateRight} from '../common/animations';
+import {RotateRight, Scale} from '../common/animations';
 import SimpleAnimation from '../common/animations/SimpleAnimation';
 
 import {DashboardIcon, HomeIcon, SettingsIcon} from '../common/svgs';
@@ -12,30 +12,19 @@ const Tab = createBottomTabNavigator();
 
 const BottomBar = () => {
   const [animateDashboard, setAnimateDashboard] = useState<boolean>(false);
+  const [animateHome, setAnimateHome] = useState<boolean>(false);
   const [animateSettings, setAnimateSettings] = useState<boolean>(false);
-
-  const getIconColorByStatus = (active: boolean): string =>
-    active ? '#6B9080' : '#A4C3B2';
 
   return (
     <Tab.Navigator screenOptions={{tabBarActiveTintColor: '#6B9080'}}>
       <Tab.Screen
         listeners={{
-          tabPress: e => {
-            setAnimateSettings(false);
-            setAnimateDashboard(true);
-          },
-          blur: e => {
-            setAnimateDashboard(false);
-          },
+          tabPress: () => setAnimateDashboard(true),
+          blur: () => setAnimateDashboard(false),
         }}
         options={{
           tabBarIcon: ({focused}) => (
-            <SimpleAnimation
-              triggerAnimation={animateDashboard}
-              size={24}
-              onAnimationEnd={() => setAnimateDashboard(false)}
-            />
+            <SimpleAnimation triggerAnimation={animateDashboard} size={24} />
           ),
         }}
         name="Dashboard"
@@ -43,24 +32,15 @@ const BottomBar = () => {
       />
 
       <Tab.Screen
-        listeners={
-          {
-            // tabPress: e => {
-            //   setAnimateSettings(false);
-            //   setAnimateDashboard(true);
-            // },
-            // blur: e => {
-            //   setAnimateDashboard(false);
-            // },
-          }
-        }
+        listeners={{
+          tabPress: () => setAnimateHome(true),
+          blur: () => setAnimateHome(false),
+        }}
         options={{
           tabBarIcon: ({focused}) => (
-            <RotateRight
-              onAnimationEnd={() => setAnimateSettings(false)}
-              triggerAnimation={focused && animateSettings}>
-              <HomeIcon color={getIconColorByStatus(focused)} />
-            </RotateRight>
+            <Scale triggerAnimation={focused && animateHome}>
+              <HomeIcon filled={focused} color={'#6B9080'} />
+            </Scale>
           ),
         }}
         name="Home"
@@ -69,17 +49,13 @@ const BottomBar = () => {
 
       <Tab.Screen
         listeners={{
-          tabPress: e => {
-            setAnimateSettings(true);
-            setAnimateDashboard(false);
-          },
+          tabPress: () => setAnimateSettings(true),
+          blur: () => setAnimateSettings(false),
         }}
         options={{
           tabBarIcon: ({focused}) => (
-            <RotateRight
-              onAnimationEnd={() => setAnimateSettings(false)}
-              triggerAnimation={focused && animateSettings}>
-              <SettingsIcon color={getIconColorByStatus(focused)} />
+            <RotateRight triggerAnimation={focused && animateSettings}>
+              <SettingsIcon color={'#6B9080'} filled={focused} />
             </RotateRight>
           ),
         }}
