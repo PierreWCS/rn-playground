@@ -11,7 +11,7 @@ import SettingsScreen from '../features/settings/screens/SettingsScreen';
 const Tab = createBottomTabNavigator();
 
 const BottomBar = () => {
-  const [animateDashboard, setAnimateDashboard] = useState<boolean>(false);
+  const [animateDashboard, setAnimateDashboard] = useState<boolean>(true);
   const [animateHome, setAnimateHome] = useState<boolean>(false);
   const [animateSettings, setAnimateSettings] = useState<boolean>(false);
 
@@ -24,7 +24,10 @@ const BottomBar = () => {
         }}
         options={{
           tabBarIcon: ({focused}) => (
-            <SimpleAnimation triggerAnimation={animateDashboard} size={24} />
+            <SimpleAnimation
+              triggerAnimation={focused && animateDashboard}
+              size={24}
+            />
           ),
         }}
         name="Dashboard"
